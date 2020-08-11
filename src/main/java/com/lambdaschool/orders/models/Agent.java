@@ -25,13 +25,12 @@ public class Agent {
     public Agent() {
     }
 
-    public Agent(String agentname, String workingarea, double commission, String phone, String country, List<Customer> customers) {
+    public Agent(String agentname, String workingarea, double commission, String phone, String country) {
         this.agentname = agentname;
         this.workingarea = workingarea;
         this.commission = commission;
         this.phone = phone;
         this.country = country;
-        this.customers = customers;
     }
 
     public long getAgentcode() {
