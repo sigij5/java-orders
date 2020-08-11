@@ -3,6 +3,8 @@ package com.lambdaschool.orders.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -18,9 +20,13 @@ public class Customer {
     private String custcountry;
     private String grade;
     private double openingamt;
+    private double receiveamt;
     private double paymentamt;
     private double outstandingamt;
     private String phone;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "agentcode", nullable = false)
@@ -29,25 +35,18 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String custname,
-                    String custcity,
-                    String workingarea,
-                    String custcountry,
-                    String grade,
-                    double openingamt,
-                    double paymentamt,
-                    double outstandingamt,
-                    String phone,
-                    Agent agent) {
+    public Customer(String custname, String custcity, String workingarea, String custcountry, String grade, double openingamt, double receiveamt, double paymentamt, double outstandingamt, String phone, List<Order> orders, Agent agent) {
         this.custname = custname;
         this.custcity = custcity;
         this.workingarea = workingarea;
         this.custcountry = custcountry;
         this.grade = grade;
         this.openingamt = openingamt;
+        this.receiveamt = receiveamt;
         this.paymentamt = paymentamt;
         this.outstandingamt = outstandingamt;
         this.phone = phone;
+        this.orders = orders;
         this.agent = agent;
     }
 
@@ -107,6 +106,14 @@ public class Customer {
         this.openingamt = openingamt;
     }
 
+    public double getReceiveamt() {
+        return receiveamt;
+    }
+
+    public void setReceiveamt(double receiveamt) {
+        this.receiveamt = receiveamt;
+    }
+
     public double getPaymentamt() {
         return paymentamt;
     }
@@ -129,6 +136,14 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public Agent getAgent() {

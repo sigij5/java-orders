@@ -15,7 +15,7 @@ public class Payment {
     @Column(unique = true, nullable = false)
     private String type;
 
-    @ManyToMany(mappedBy = "orders")
+    @ManyToMany(mappedBy = "payments")
     private Set<Order> orders = new HashSet<>();
 
     public Payment() {

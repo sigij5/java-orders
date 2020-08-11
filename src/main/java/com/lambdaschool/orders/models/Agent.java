@@ -25,16 +25,13 @@ public class Agent {
     public Agent() {
     }
 
-    public Agent(String agentname,
-                 String workingarea,
-                 double commission,
-                 String phone,
-                 String country) {
+    public Agent(String agentname, String workingarea, double commission, String phone, String country, List<Customer> customers) {
         this.agentname = agentname;
         this.workingarea = workingarea;
         this.commission = commission;
         this.phone = phone;
         this.country = country;
+        this.customers = customers;
     }
 
     public long getAgentcode() {
@@ -83,6 +80,14 @@ public class Agent {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 }
 
