@@ -3,6 +3,7 @@ package com.lambdaschool.orders.controllers;
 
 import com.lambdaschool.orders.models.Customer;
 import com.lambdaschool.orders.services.CustomerServices;
+import com.lambdaschool.orders.views.OrderCounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,12 @@ public class CustomerController {
     @GetMapping(value = "/namelike/{cusname}", produces = "application/json")
     public ResponseEntity<?> findCustomerByNameLike(@PathVariable String cusname){
         List myList = customerServices.findAllCustomersByNameLike(cusname);
+        return new ResponseEntity<>(myList, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/orders/count", produces = "application/json")
+    public ResponseEntity<?> getOrderCount(){
+        List<OrderCounts> myList = customerServices.getOrderCounts();
         return new ResponseEntity<>(myList, HttpStatus.OK);
     }
 

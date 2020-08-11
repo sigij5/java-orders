@@ -2,6 +2,7 @@ package com.lambdaschool.orders.services;
 
 import com.lambdaschool.orders.models.Customer;
 import com.lambdaschool.orders.repositories.CustomerRepository;
+import com.lambdaschool.orders.views.OrderCounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,12 @@ public class CustomerServicesImpl implements CustomerServices{
     @Override
     public List<Customer> findAllCustomersByNameLike(String cusname) {
         return customerrepos.findByCustnameContainingIgnoringCase(cusname);
+    }
+
+    @Override
+    public List<OrderCounts> getOrderCounts() {
+        List<OrderCounts> list=customerrepos.findOrderCounts();
+        return list;
     }
 
     @Transactional
